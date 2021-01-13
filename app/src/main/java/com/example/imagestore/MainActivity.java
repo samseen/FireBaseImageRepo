@@ -86,6 +86,11 @@ public class MainActivity extends AppCompatActivity {
                 fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
+
+                        Model model = new Model(uri.toString());
+                        String modelId = root.push().getKey();
+                        root.child(modelId).setValue(model);
+
                         Toast.makeText(MainActivity.this, "Uploaded Successfully!", Toast.LENGTH_SHORT).show();
                     }
                 });
