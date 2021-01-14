@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private DatabaseReference root = FirebaseDatabase.getInstance()
             .getReference("Image");
-    private StorageReference reference = FirebaseStorage.getInstance().getReference();
+    private StorageReference reference = FirebaseStorage.getInstance()
+            .getReference();
     private Uri imageUri;
 
     @Override
@@ -48,11 +49,11 @@ public class MainActivity extends AppCompatActivity {
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 Intent galleryIntent = new Intent();
                 galleryIntent.setAction(Intent.ACTION_GET_CONTENT);
                 galleryIntent.setType("image/*");
-                startActivityForResult(galleryIntent, 2);
+                startActivityForResult(galleryIntent , 2);
             }
         });
 
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == 2 && requestCode == RESULT_OK && data != null) {
+        if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
             imageUri = data.getData();
             imageView.setImageURI(imageUri);
         }
