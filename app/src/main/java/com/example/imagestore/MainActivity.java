@@ -91,8 +91,11 @@ public class MainActivity extends AppCompatActivity {
                         Model model = new Model(uri.toString());
                         String modelId = root.push().getKey();
                         root.child(modelId).setValue(model);
+                        progressBar.setVisibility(View.INVISIBLE);
 
                         Toast.makeText(MainActivity.this, "Uploaded Successfully!", Toast.LENGTH_SHORT).show();
+
+                        imageView.setImageResource(R.drawable.ic_baseline_add_photo_alternate_24);
                     }
                 });
             }
